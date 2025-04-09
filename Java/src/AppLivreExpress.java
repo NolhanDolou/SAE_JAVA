@@ -2,11 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AppLivreExpress {
-    Magasin mag
-    boolean quitter;
+    private Librairie mag;
+    private boolean quitter;
+    private personne utilisateur;
     private Personne personne_selectionnee;
     
-    AppLivreExpress(Magasin  mag) {
+    AppLivreExpress(Librairie  mag) {
         this.mag = mag;
         this.quitter = false;
         this.utilisateur = null;
