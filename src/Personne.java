@@ -1,9 +1,9 @@
 public abstract class Personne{
-    private String nom;
-    private String prenom;
-    private String adresse;
-    private int codePostal;
-    private String ville;
+    protected String nom;
+    protected String prenom;
+    protected String adresse;
+    protected int codePostal;
+    protected String ville;
 
     public Personne(String nom, String prenom, String adresse, int codePostal, String ville){
         this.nom = nom;
@@ -34,4 +34,3 @@ public abstract class Personne{
     }
 
 }
-
