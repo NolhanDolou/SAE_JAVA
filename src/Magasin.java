@@ -1,18 +1,28 @@
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Magasin {
-    private String nom;
-    private String ville;
-    public List<Livre> stock;
+    private String nomMag ;
+    private String villeMag;
+    private List<Livre> stock;
 
-    public Magasin(String nom, String adresse, int codePostal, String ville) {
-        this.nom = nom;
-        this.ville = ville;
-        this.stock = new ArrayList<>();
+    public Magasin( String nomMag, String villeMag){
+        this.nomMag = nomMag;
+        this.villeMag = villeMag;
+        this.stock = new ArrayList<Livre>();
     }
 
-    public void ajouterLivre(Livre livre) {
-        stock.add(livre);
+    public String getNomMag() {
+        return this.nomMag;
     }
+
+    public String getVilleMag() {
+        return this.villeMag;
+    }
+
+    public List<Livre> getStock() {
+        return this.stock;
+    }
+
+    
 }

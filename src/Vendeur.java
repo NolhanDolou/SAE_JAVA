@@ -1,32 +1,31 @@
-import java.util.List;
 
 public class Vendeur extends Personne {
 
     private Magasin magasin;
 
     public Vendeur(String nom, String prenom){
-        super(nom, prenom, adresse, codePostal, ville);
-        this.magasin = magasin;
+        super(nom, prenom);
+        this.magasin=magasin;
     }
 
     public void ajouterLivre(String titre, Auteur auteur, int nbDePages, double prix, List<Classification> themes){
         Livre livre = new Livre(titre, auteur, nbDePages, prix, themes);
-        this.magasin.stock.add(livre);
+        this.magasin.getStock().add(livre);
     }
 
     public void majStock(Livre livre, int qte){
         if(qte>0){
             for(int i=0;i<qte;i++){
-                this.ajouterLivre(livre.titre, livre.auteur, livre.nbDePages, livre.prix, livre.themes);
+                this.ajouterLivre(livre.getTitre(), livre.getAuteur(), livre.getNbDePages(), livre.getPrix(), livre.getThemes());
             }}
         else{
             for(int i=0;i>qte;i--){
-                this.magasin.stock.remove(livre);}
+                this.magasin.getStock().remove(livre);}
         }
     } 
 
     public boolean estDispo(Livre livre, Magasin magasin){
-        if(magasin.stock.contains(livre)){
+        if(magasin.getStock().contains(livre)){
             return true;
         }
         return false;
@@ -36,8 +35,8 @@ public class Vendeur extends Personne {
         return client.commanderLivre(livre, qte);
     }
 
-    public boolean transfertLivre(Livre livre, Magasin autreMagasin){
-        autreMagasin.stock.remove(livre);
-        this.majStock(livre, this.magasin);
+    public void transfertLivre(Livre livre, Magasin autreMagasin){
+        autreMagasin.getStock().remove(livre);
+        this.majStock(livre, 1);
     }
 }
