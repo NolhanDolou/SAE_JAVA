@@ -6,7 +6,7 @@ public class Vendeur extends Personne {
 
     public Vendeur(String nom, String prenom){
         super(nom, prenom, adresse, codePostal, ville);
-        this.magasin=magasin;
+        this.magasin = magasin;
     }
 
     public void ajouterLivre(String titre, Auteur auteur, int nbDePages, double prix, List<Classification> themes){
