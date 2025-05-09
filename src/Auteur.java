@@ -10,6 +10,8 @@ public class Auteur extends Personne  {
         this.adresse = adresse;
         this.codePostal = codePostal;
         this.ville = ville;
+
+        
     }
 
 }
