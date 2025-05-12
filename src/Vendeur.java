@@ -32,7 +32,13 @@ public class Vendeur extends Personne {
     }
 
     public boolean commandeClient(Livre livre, Client client, int qte){
-        return client.commanderLivre(livre, qte);
+        for(int i = 0; i<qte; i++){
+            if(this.estDispo(livre, this.magasin)){
+                client.commanderLivre(livre, this.magasin);}
+            else{
+                return false;
+            }
+        return true;}
     }
 
     public void transfertLivre(Livre livre, Magasin autreMagasin){

@@ -1,11 +1,11 @@
 public abstract class Personne{
-    private String nom;
-    private String prenom;
-       
+    protected String nom;
+    protected String prenom;
 
     public Personne(String nom, String prenom){
         this.nom = nom;
         this.prenom = prenom;
+
     }
 
     public String getNom() {
@@ -16,6 +16,4 @@ public abstract class Personne{
         return prenom;
     }
 
-
 }
-

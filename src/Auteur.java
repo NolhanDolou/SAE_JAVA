@@ -1,17 +1,24 @@
-public class Auteur extends Personne  {
-    String nom;
-    String prenom;
-    String adresse;
-    int codePostal;
-    String ville;
+import java.util.List;
+import java.util.ArrayList;
 
-    public Auteur(String nom, String prenom, String adresse, int codePostal, String ville){
-        super(nom, prenom);
-        this.adresse = adresse;
-        this.codePostal = codePostal;
-        this.ville = ville;
+public class Auteur extends Personne{
+    private List<Livre> livreEcrits;
 
-        
+    public Auteur(String nom, String prenom){
+        super(nom,prenom);
+        this.livreEcrits=new ArrayList<>();
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public List<Livre> getLivreEcrits() {
+        return livreEcrits;
     }
 
 }
