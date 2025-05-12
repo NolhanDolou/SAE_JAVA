@@ -3,7 +3,13 @@ import java.util.Scanner;
 
 public class AppMenu{
 
+    public static void clear() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
     public static void afficherMenu(String titre, List<String> options) {
+        clear();
         // Déterminer la largeur maximale
         int largeur = titre.length();
         for (int i = 0; i < options.size(); i++) {
@@ -38,10 +44,10 @@ public class AppMenu{
         Scanner scanner = new Scanner(System.in);
 
         List<String> options = List.of(
-            "Methode numero",
-            "Methode numero",
-            "Methode numero",
-            "Methode numero"
+            "Administrateur",
+            "Vendeur",
+            "Client",
+            "Quitter"
         );
 
         int choix;
