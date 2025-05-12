@@ -36,7 +36,7 @@ public class Vendeur extends Personne {
     public boolean commandeClient(Livre livre, Client client, int qte){
         for(int i = 0; i<qte; i++){
             if(this.estDispo(livre, this.magasin)){
-                client.commanderLivre(livre, this.magasin);}
+                client.commanderLivre(livre, qte, this.magasin);}
             else{
                 return false;
             }

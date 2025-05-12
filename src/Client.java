@@ -38,8 +38,9 @@ public class Client extends Personne {
         this.ville = ville;
     }
 
-    public commanderLivre(Livre livre, int qte, Magasin magasin){
-        Commande commande = new Commande(this.commandes.size()+1, qte);
+    public void commanderLivre(Livre livre, int qte, Magasin magasin){
+        DetailCommande commande = new DetailCommande(this.commandes.getLast().getCommandeFinale().size()+1,livre, qte);
+        this.commandes.getLast().getCommandeFinale().add(commande);
         magasin.getStock().remove(livre);
     }
     
