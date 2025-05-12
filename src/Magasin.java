@@ -9,7 +9,7 @@ public class Magasin {
     public Magasin( String nomMag, String villeMag){
         this.nomMag = nomMag;
         this.villeMag = villeMag;
-        this.stock = new ArrayList<Livre>();
+        this.stock = new ArrayList<>();
     }
 
     public String getNomMag() {

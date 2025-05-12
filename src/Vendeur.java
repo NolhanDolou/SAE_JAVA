@@ -1,3 +1,5 @@
+import java.util.List;
+import java.util.ArrayList;
 
 public class Vendeur extends Personne {
 
@@ -8,15 +10,15 @@ public class Vendeur extends Personne {
         this.magasin=magasin;
     }
 
-    public void ajouterLivre(String titre, Auteur auteur, int nbDePages, double prix, List<Classification> themes){
-        Livre livre = new Livre(titre, auteur, nbDePages, prix, themes);
+    public void ajouterLivre(String titre, Auteur auteur, int nbDePages, double prix, List<Classification> themes, Editeur editeur){
+        Livre livre = new Livre(titre, auteur, nbDePages, prix, themes, editeur);
         this.magasin.getStock().add(livre);
     }
 
     public void majStock(Livre livre, int qte){
         if(qte>0){
             for(int i=0;i<qte;i++){
-                this.ajouterLivre(livre.getTitre(), livre.getAuteur(), livre.getNbDePages(), livre.getPrix(), livre.getThemes());
+                this.ajouterLivre(livre.getTitre(), livre.getAuteur(), livre.getNbDePages(), livre.getPrix(), livre.getThemes(),livre.getEditeur());
             }}
         else{
             for(int i=0;i>qte;i--){

@@ -6,6 +6,7 @@ public class Livre{
     private Auteur auteur;
     private int nbDePages;
     private double prix;
+    private Editeur editeur;
     private List<Classification> themes;
 
     public String getTitre() {
@@ -22,6 +23,17 @@ public class Livre{
     }
     public List<Classification> getThemes() {
         return themes;
+    }
+    public Editeur getEditeur() {
+        return editeur;
+    }
+    public Livre(String titre, Auteur auteur, int nbDePages, double prix,List<Classification> themes, Editeur editeur) {
+        this.titre = titre;
+        this.auteur = auteur;
+        this.nbDePages = nbDePages;
+        this.prix = prix;
+        this.editeur = editeur;
+        this.themes = themes;
     }
 
 
