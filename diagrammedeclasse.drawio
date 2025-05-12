@@ -163,8 +163,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="85txJ6PsgXWqzurRiVr9-0" value="name" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" target="wkKJu1E77ur6RrCQSXf_-8" edge="1">
-          <mxGeometry x="0.9267" y="25" relative="1" as="geometry">
+        <mxCell id="85txJ6PsgXWqzurRiVr9-0" value="magasin" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" target="wkKJu1E77ur6RrCQSXf_-8" edge="1">
+          <mxGeometry x="0.8776" y="25" relative="1" as="geometry">
             <mxPoint x="240" y="579" as="sourcePoint" />
             <mxPoint x="590" y="1040" as="targetPoint" />
             <Array as="points">
@@ -233,6 +233,18 @@
         </mxCell>
         <mxCell id="qEMlZIY-xc4cYdUhLl6S-16" value="livres" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="1220" y="530" width="30" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="Gc4b3mTtAuaSKJjf1bAI-5" value="livresEcrits" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1120" y="300" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Gc4b3mTtAuaSKJjf1bAI-6" value="*" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1050" y="300" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Gc4b3mTtAuaSKJjf1bAI-7" value="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1000" y="220" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Gc4b3mTtAuaSKJjf1bAI-8" value="auteur" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1000" y="180" width="30" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
