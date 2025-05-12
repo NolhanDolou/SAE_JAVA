@@ -1,8 +1,12 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public class Client extends Personne {
     private int numeroClient;
     private String adresse;
     private int codePostal;
     private String ville;
+    private List<Commande> commandes;
 
     public Client(String nom, String prenom, int numCli, String adresse, int codePostal, String ville) {
         super(nom, prenom);
@@ -10,6 +14,7 @@ public class Client extends Personne {
         this.adresse = adresse;
         this.codePostal = codePostal;
         this.ville = ville;
+        this.commandes= new ArrayList<>();
     }
     public int getNumeroClient() {
         return numeroClient;
@@ -31,6 +36,11 @@ public class Client extends Personne {
     }
     public void setVille(String ville) {
         this.ville = ville;
+    }
+
+    public commanderLivre(Livre livre, int qte, Magasin magasin){
+        Commande commande = new Commande(this.commandes.size()+1, qte);
+        magasin.getStock().remove(livre);
     }
     
 }
