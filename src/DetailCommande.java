@@ -1,6 +1,3 @@
-import java.util.List;
-import java.util.ArrayList;
-
 public class DetailCommande{
     private int numDetailCommande;
     private Livre livre;
@@ -17,13 +14,14 @@ public class DetailCommande{
         return qte;
     }
 
-    
     public DetailCommande(int numDetailCommande, Livre livre, int qte) {
         this.numDetailCommande = numDetailCommande;
         this.livre = livre;
         this.qte = qte;
     }
 
-    
+    public double prixLivres(){
+        return this.livre.getPrix()*qte;
+    }
 
 }

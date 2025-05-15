@@ -1,17 +1,20 @@
 import java.util.List;
-import java.util.ArrayList;
 
 public class Vendeur extends Personne {
 
     private Magasin magasin;
 
-    public Vendeur(String nom, String prenom){
+    public Vendeur(String nom, String prenom,Magasin magasin){
         super(nom, prenom);
         this.magasin=magasin;
     }
 
     public void ajouterLivre(String titre, Auteur auteur, int nbDePages, double prix, List<Classification> themes, Editeur editeur){
-        Livre livre = new Livre(titre, auteur, nbDePages, prix, themes, editeur);
+        Livre livre = new Livre(titre, auteur, nbDePages, prix, editeur);
+        for(Classification theme : themes){
+        livre.ajouterThemes(theme);}
+        for(Classification theme : themes){
+        theme.ajouterLivreGenre(livre);}
         this.magasin.getStock().add(livre);
     }
 
@@ -33,14 +36,16 @@ public class Vendeur extends Personne {
         return false;
     }
 
-    public boolean commandeClient(Livre livre, Client client, int qte){
+    public boolean commandeClient(Livre livre, Client client, int qte,Commande commande){
+        int nbtrue =0;
         for(int i = 0; i<qte; i++){
             if(this.estDispo(livre, this.magasin)){
-                client.commanderLivre(livre, qte, this.magasin);}
-            else{
-                return false;
+                client.commanderLivre(livre, qte, this.magasin,commande );
+            nbtrue+=1;}
             }
+        if(nbtrue == qte){
         return true;}
+        return false;
     }
 
     public void transfertLivre(Livre livre, Magasin autreMagasin){

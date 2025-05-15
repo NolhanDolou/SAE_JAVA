@@ -31,6 +31,9 @@ public class Client extends Personne {
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
+    public List<Commande> getCommandes() {
+        return commandes;
+    }
     public void setCodePostal(int codePostal) {
         this.codePostal = codePostal;
     }
@@ -38,10 +41,12 @@ public class Client extends Personne {
         this.ville = ville;
     }
 
-    public void commanderLivre(Livre livre, int qte, Magasin magasin){
-        DetailCommande commande = new DetailCommande(this.commandes.getLast().getCommandeFinale().size()+1,livre, qte);
-        this.commandes.getLast().getCommandeFinale().add(commande);
+    public void commanderLivre(Livre livre, int qte, Magasin magasin, Commande commande){
+        DetailCommande detailCommande = new DetailCommande(commande.getCommandeFinale().size()+1,livre, qte);
+        commande.ajouterDetailCommande(detailCommande);
         magasin.getStock().remove(livre);
     }
+
+    
     
 }
