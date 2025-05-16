@@ -73,13 +73,12 @@ public class Executable {
         
         System.out.println("Dans la commande, il y a :");
         for (DetailCommande d : commande1.getCommandeFinale()){
-            System.out.println("la commande " + d.getNumDetailCommande() + "qui contient " + d.getQte() + " fois le livres : " + d.getLivre().getTitre() + ". Pour un total de " + d.prixLivres() + "€");
+            System.out.println("la commande " + d.getNumDetailCommande() + " qui contient " + d.getQte() + " fois le livres : " + d.getLivre().getTitre() + ". Pour un total de " + d.prixLivres() + "€");
         }
-        System.out.println("Le prix de la commande total est : " + commande1.prixTotal());
+        System.out.println("Le prix de la commande total est : " + commande1.prixTotal() + "€");
+        System.out.println("---------");
 
-        /*
-        // Livraison
         // Classification
-        */
+        
     }
 }

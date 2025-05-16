@@ -61,7 +61,7 @@ public class Commande{
     public double prixTotal(){
         double prixTotal =0;
         for(DetailCommande dc : this.commandeFinale){
-            prixTotal+= dc.getLivre().getPrix();
+            prixTotal+= dc.getLivre().getPrix()*dc.getQte();
         }
         return prixTotal;
     }
