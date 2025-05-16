@@ -46,7 +46,4 @@ public class Client extends Personne {
         commande.ajouterDetailCommande(detailCommande);
         magasin.getStock().remove(livre);
     }
-
-    
-    
 }

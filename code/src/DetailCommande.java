@@ -26,7 +26,4 @@ public class DetailCommande{
     public double prixLivres(){
         return this.livre.getPrix()*qte;
     }
-
-    
-
 }
