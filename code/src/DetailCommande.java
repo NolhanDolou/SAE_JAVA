@@ -27,6 +27,9 @@ public class DetailCommande{
         return this.livre.getPrix()*qte;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Livre : " + livre.getTitre() + ", quantité : " + qte + ", prix : " + livre.getPrix() * qte + "€";
+    }
 
 }
