@@ -32,5 +32,7 @@ public class Client extends Personne {
     public void setVille(String ville) {
         this.ville = ville;
     }
+
+    
     
 }
