@@ -6,23 +6,34 @@ public class Commande{
     private List<DetailCommande> commandeFinale;
     private boolean enligne;
     private Livraison livraison;
+    private String reception; //l'adresse de livraison (donc le magasin ou le client)
 
-    public Commande(int numCommande, boolean enligne) {
-        this.numCommande = numCommande;
-        this.commandeFinale = new ArrayList<>();
-        this.enligne=enligne;
-    }
-    
-    public Commande(int numCommande, boolean enligne, Livraison livraison) {
+
+    //si demande de livraison en magasin
+    public Commande(int numCommande, boolean enligne, Livraison livraison, Magasin magasin) {
         this.numCommande = numCommande;
         this.commandeFinale = new ArrayList<>();
         this.enligne=enligne;
         this.livraison=livraison;
+        this.reception = magasin.getAdresse();
+    }
+
+    public Commande(int numCommande, boolean enligne, Livraison livraison, Client client) {
+        this.numCommande = numCommande;
+        this.commandeFinale = new ArrayList<>();
+        this.enligne=enligne;
+        this.livraison=livraison;
+        this.reception = client.getAdresse();
     }
 
     public int getNumCommande() {
         return numCommande;
     }
+
+    public String getReception() {
+        return this.reception;
+    }
+
     public List<DetailCommande> getCommandeFinale() {
         return commandeFinale;
     }

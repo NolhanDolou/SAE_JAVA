@@ -4,16 +4,22 @@ import java.util.List;
 public class Magasin {
     private String nomMag ;
     private String villeMag;
+    private String adresseMag;
     private List<Livre> stock;
 
-    public Magasin( String nomMag, String villeMag){
+    public Magasin( String nomMag, String villeMag, String adresseMag){
         this.nomMag = nomMag;
         this.villeMag = villeMag;
+        this.adresseMag = adresseMag;
         this.stock = new ArrayList<>();
     }
 
     public String getNomMag() {
         return this.nomMag;
+    }
+
+    public String getAdresse() {
+        return this.adresseMag;
     }
 
     public String getVilleMag() {

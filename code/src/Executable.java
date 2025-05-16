@@ -21,7 +21,7 @@ public class Executable {
         System.out.println("Le livre " + livre2.getTitre() + " a été écrit par " + livre2.getAuteur().getNom() + " " + livre2.getAuteur().getPrenom() + " et publié par " + livre2.getEditeur().getNom());
         System.out.println("------------");
         //on créer un magasin
-        Magasin magasin = new Magasin("Librairie de Paris", "Paris");
+        Magasin magasin = new Magasin("Librairie de Paris", "Paris", "l'adresse la");
         System.out.println("Le magasin est : " + magasin.getNomMag() + " et il est situé à " + magasin.getVilleMag());
         System.out.println("------------");
         //on ajoute les livres au magasin
@@ -49,9 +49,9 @@ public class Executable {
         System.out.println("------------"); 
         // on crée des commandes
         
-        Commande commande1 = new Commande(1, true, Livraison.DOMICILE);
-        Commande commande2 = new Commande(2, true, Livraison.MAGASIN);
-        Commande commande3 = new Commande(3,false);
+        Commande commande1 = new Commande(1, true, Livraison.DOMICILE, client1);
+        Commande commande2 = new Commande(2, true, Livraison.MAGASIN, magasin);
+        Commande commande3 = new Commande(3,false, Livraison.DOMICILE, client3);
 
         List<Commande> commandes = new ArrayList<>();
         commandes.add(commande1);
@@ -61,12 +61,13 @@ public class Executable {
         System.out.println("Les commandes sont : ");
         for (Commande commande : commandes) {
             String enLigne = commande.getEnligne() ? "en ligne" : "en magasin";
-            System.out.println("Commande n°" + commande.getNumCommande() + " : " + enLigne);
+            System.out.println("Commande n°" + commande.getNumCommande() + " : " + enLigne + " | sera livrée au " + commande.getReception());
         }
         System.out.println("------------");
         
         //Detail commande
-        
+        DetailCommande detCom1 = new DetailCommande(0, livre2, 2, 0);
+
         /*
         // Livraison
         // Classification

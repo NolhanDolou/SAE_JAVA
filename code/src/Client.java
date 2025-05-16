@@ -1,5 +1,5 @@
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Client extends Personne {
     private int numeroClient;
@@ -42,7 +42,7 @@ public class Client extends Personne {
     }
 
     public void commanderLivre(Livre livre, int qte, Magasin magasin, Commande commande){
-        DetailCommande detailCommande = new DetailCommande(commande.getCommandeFinale().size()+1,livre, qte);
+        DetailCommande detailCommande = new DetailCommande(commande.getCommandeFinale().size()+1,livre, qte, commande.getNumCommande());
         commande.ajouterDetailCommande(detailCommande);
         magasin.getStock().remove(livre);
     }
