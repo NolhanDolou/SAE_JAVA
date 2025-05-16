@@ -78,7 +78,8 @@ public class Executable {
         System.out.println("Le prix de la commande total est : " + commande1.prixTotal() + "€");
         System.out.println("---------");
 
-        commande1.editerFacture();
+        String facture = commande1.editerFacture();
+        System.out.println(facture);
         System.out.println("---------");
         // Classification
         
