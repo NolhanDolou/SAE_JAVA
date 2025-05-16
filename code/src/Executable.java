@@ -66,7 +66,16 @@ public class Executable {
         System.out.println("------------");
         
         //Detail commande
-        DetailCommande detCom1 = new DetailCommande(0, livre2, 2, 0);
+        DetailCommande detCom1 = new DetailCommande(0, livre2, 2, 1);
+        DetailCommande detCom2 = new DetailCommande(1, livre1, 5, 1);
+        commande1.ajouterDetailCommande(detCom1);
+        commande1.ajouterDetailCommande(detCom2);
+        
+        System.out.println("Dans la commande, il y a :");
+        for (DetailCommande d : commande1.getCommandeFinale()){
+            System.out.println("la commande " + d.getNumDetailCommande() + "qui contient " + d.getQte() + " fois le livres : " + d.getLivre().getTitre() + ". Pour un total de " + d.prixLivres() + "€");
+        }
+        System.out.println("Le prix de la commande total est : " + commande1.prixTotal());
 
         /*
         // Livraison

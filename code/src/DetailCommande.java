@@ -27,4 +27,6 @@ public class DetailCommande{
         return this.livre.getPrix()*qte;
     }
 
+    
+
 }
