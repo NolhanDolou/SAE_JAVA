@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Executable {
     public static void main(String[] args) {
         System.out.println("------------");
@@ -26,19 +28,48 @@ public class Executable {
         magasin.ajouterLivre(livre1);
         magasin.ajouterLivre(livre2);
         //on affiche les livres du magasin
-        System.out.println("Livres disponibles dans le magasin :"); 
-        for (Livre livre : magasin.getLivres()) {
+        System.out.println("Livres disponibles dans le magasin :" + magasin.getNomMag()); 
+        for (Livre livre : magasin.getStock()) {
             System.out.println(livre.getTitre() + " de " + livre.getAuteur().getNom() + " " + livre.getAuteur().getPrenom());
         }
-        /*
+        System.out.println("------------");
+        
         // on crée des clients
-        Client client1 = new Client("Dupont", "Jean");
-        Client client2 = new Client("Martin", "Marie");
-        Client client3 = new Client("Durand", "Pierre");
+        Client client1 = new Client("Dupont", "Jean", 1, "222 rue de Bourgogne", 75000, "Paris");
+        Client client2 = new Client("Martin", "Marie", 2, "333 rue de la République", 75001, "Paris");
+        Client client3 = new Client("Durand", "Pierre", 3, "444 rue de la Liberté", 75002, "Paris");
+        System.out.println("Les clients sont : " + client1.getNom() + " " + client1.getPrenom() + ", " + client2.getNom() + " " + client2.getPrenom() + " et " + client3.getNom() + " " + client3.getPrenom());
+        System.out.println(client1.getNom() + " habite au " + client1.getAdresse() + " " + client1.getCodePostal() + " " + client1.getVille());
+        System.out.println(client2.getNom() + " habite au " + client2.getAdresse() + " " + client2.getCodePostal() + " " + client2.getVille());
+        System.out.println(client3.getNom() + " habite au " + client3.getAdresse() + " " + client3.getCodePostal() + " " + client3.getVille());
+        System.out.println("------------");
+        // on crée un vendeur
+        Vendeur vendeur = new Vendeur("Leroy", "Paul", magasin);
+        System.out.println("Le vendeur est : " + vendeur.getNom() + " " + vendeur.getPrenom() + " et il travaille dans le magasin " + vendeur.getMagasin().getNomMag());
+        System.out.println("------------"); 
         // on crée des commandes
-        Commande commande1 = new Commande(client1);
-        Commande commande2 = new Commande(client2);
-        Commande commande3 = new Commande(client3);
+        
+        Commande commande1 = new Commande(1, true, Livraison.DOMICILE);
+        Commande commande2 = new Commande(2, true, Livraison.MAGASIN);
+        Commande commande3 = new Commande(3,false);
+
+        List<Commande> commandes = new ArrayList<>();
+        commandes.add(commande1);
+        commandes.add(commande2);
+        commandes.add(commande3);
+
+        System.out.println("Les commandes sont : ");
+        for (Commande commande : commandes) {
+            String enLigne = commande.getEnligne() ? "en ligne" : "en magasin";
+            System.out.println("Commande n°" + commande.getNumCommande() + " : " + enLigne);
+        }
+        System.out.println("------------");
+        
+        //Detail commande
+        
+        /*
+        // Livraison
+        // Classification
         */
     }
 }

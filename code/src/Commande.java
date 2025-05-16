@@ -1,11 +1,17 @@
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Commande{
     private int numCommande;
     private List<DetailCommande> commandeFinale;
     private boolean enligne;
     private Livraison livraison;
+
+    public Commande(int numCommande, boolean enligne) {
+        this.numCommande = numCommande;
+        this.commandeFinale = new ArrayList<>();
+        this.enligne=enligne;
+    }
     
     public Commande(int numCommande, boolean enligne, Livraison livraison) {
         this.numCommande = numCommande;

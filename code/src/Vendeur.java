@@ -9,6 +9,10 @@ public class Vendeur extends Personne {
         this.magasin=magasin;
     }
 
+    public Magasin getMagasin() {
+        return magasin;
+    }
+
     public void ajouterLivre(String titre, Auteur auteur, int nbDePages, double prix, List<Classification> themes, Editeur editeur){
         Livre livre = new Livre(titre, auteur, nbDePages, prix, editeur);
         for(Classification theme : themes){

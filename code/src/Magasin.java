@@ -1,5 +1,5 @@
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Magasin {
     private String nomMag ;
@@ -24,7 +24,14 @@ public class Magasin {
         return this.stock;
     }
 
+    public void ajouterLivre(Livre livre){
+        this.stock.add(livre);
+    }
     
-
+    public void supprimerLivre(Livre livre){
+        this.stock.remove(livre);
+    }
+    
+    
     
 }
