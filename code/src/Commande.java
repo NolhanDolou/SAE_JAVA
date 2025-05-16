@@ -72,7 +72,7 @@ public class Commande{
         facture += "Commande n°" + this.numCommande + "\n";
         facture += "\n";
         facture += "Numéro de client : " + this.client.getNumeroClient() + "\n";
-        facture += "Client : " + this.client.getNom() + " " + this.client.getPrenom() + "\n";
+        facture += "Client : " + this.client.getNom() + " " + this.client.getPrenom() + "\n" + "\n";
         if (this.enligne){
             facture += "Commande en ligne sur le magasin " + this.magasin.getNomMag() + "\n";
         } else {
@@ -84,7 +84,7 @@ public class Commande{
             facture += "Retrait en magasin\n";
         }
         facture += "Adresse de livraison: " + this.reception + "\n";
-        facture += "Livraison en ligne: " + (this.enligne ? "Oui" : "Non") + "\n";
+        facture += "Commande en ligne: " + (this.enligne ? "Oui" : "Non") + "\n" + "\n";
         facture += "Détails de la commande:\n";
 
         for(DetailCommande dc : this.commandeFinale){
