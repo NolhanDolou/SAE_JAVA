@@ -49,9 +49,9 @@ public class Executable {
         System.out.println("------------"); 
         // on crée des commandes
         
-        Commande commande1 = new Commande(1, true, Livraison.DOMICILE, client1);
-        Commande commande2 = new Commande(2, true, Livraison.MAGASIN, magasin);
-        Commande commande3 = new Commande(3,false, Livraison.DOMICILE, client3);
+        Commande commande1 = new Commande(1, true, Livraison.DOMICILE, magasin,client1);
+        Commande commande2 = new Commande(2, true, Livraison.MAGASIN, magasin,client2);
+        Commande commande3 = new Commande(3,false, Livraison.DOMICILE, magasin,client3);
 
         List<Commande> commandes = new ArrayList<>();
         commandes.add(commande1);
