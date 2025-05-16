@@ -14,6 +14,7 @@ public class DetailCommande{
         return qte;
     }
 
+    //num client ?
     public DetailCommande(int numDetailCommande, Livre livre, int qte) {
         this.numDetailCommande = numDetailCommande;
         this.livre = livre;
