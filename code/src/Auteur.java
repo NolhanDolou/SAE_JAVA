@@ -21,4 +21,8 @@ public class Auteur extends Personne{
         return livreEcrits;
     }
 
+    public void ajouterLivreEcrit(Livre livre){
+        this.livreEcrits.add(livre);
+    }
+
 }
