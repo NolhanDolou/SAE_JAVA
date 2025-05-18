@@ -25,14 +25,11 @@ public class Executable {
         System.out.println("Le magasin est : " + magasin.getNomMag() + " et il est situé à " + magasin.getVilleMag());
         System.out.println("------------");
         //on ajoute les livres au magasin
-        magasin.ajouterLivre(livre1);
-        magasin.ajouterLivre(livre2);
+        magasin.ajouterLivre(livre1, 8);
+        magasin.ajouterLivre(livre2,14);
         //on affiche les livres du magasin
         System.out.println("Livres disponibles dans le magasin :" + magasin.getNomMag()); 
-        for (Livre livre : magasin.getStock()) {
-            System.out.println(livre.getTitre() + " de " + livre.getAuteur().getNom() + " " + livre.getAuteur().getPrenom());
-        }
-        System.out.println("------------");
+        magasin.afficherStock();
         
         // on crée des clients
         Client client1 = new Client("Dupont", "Jean", 1, "222 rue de Bourgogne", 75000, "Paris");

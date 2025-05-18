@@ -70,6 +70,13 @@ public class AppMenu{
             "Transférer un livre",
             "Quitter"
         );
+        List<String> admin = List.of(
+            "Créer un compte vendeur",
+            "Ajouter une nouvelle librairie",
+            "Gérer les stocks",
+            "Consulter les statistiques de vente",
+            "Quitter"
+        );
 
         int choix;
         do {
@@ -88,7 +95,7 @@ public class AppMenu{
                 //Boucle Admin
                 case 1 ->{
                     do {
-                        afficherMenu("Accès Admin", vendeur);
+                        afficherMenu("Accès Admin", admin);
                         System.out.print("Votre choix : ");
 
                         while (!scanner.hasNextInt()) {

@@ -19,7 +19,8 @@ public class Vendeur extends Personne {
         livre.ajouterThemes(theme);}
         for(Classification theme : themes){
         theme.ajouterLivreGenre(livre);}
-        this.magasin.getStock().add(livre);
+        //this.magasin.getStock().add(livre);
+        this.magasin.ajouterLivre(livre, 1);
     }
 
     public void majStock(Livre livre, int qte){
@@ -34,8 +35,10 @@ public class Vendeur extends Personne {
     } 
 
     public boolean estDispo(Livre livre, Magasin magasin){
-        if(magasin.getStock().contains(livre)){
-            return true;
+        for (Livre l : magasin.getStock().keySet()){
+            if(livre.equals(l)){
+                return true;
+            }
         }
         return false;
     }
