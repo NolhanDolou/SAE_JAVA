@@ -93,12 +93,26 @@
             <mxPoint x="170" y="370" as="targetPoint" />
             <Array as="points">
               <mxPoint x="90" y="360" />
-              <mxPoint x="90" y="370" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="Zop6etKtP2Gz7wqvCrPE-40" value="Consulter le catalogue" style="ellipse;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="140" y="350" width="80" height="40" as="geometry" />
+          <mxGeometry x="374" y="340" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Zop6etKtP2Gz7wqvCrPE-42" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.75;exitY=0.1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.006;entryY=0.439;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Zop6etKtP2Gz7wqvCrPE-10" target="Zop6etKtP2Gz7wqvCrPE-44">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="180" y="310" as="sourcePoint" />
+            <mxPoint x="370" y="66" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Zop6etKtP2Gz7wqvCrPE-44" value="consulter le stock" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="375" y="50" width="65" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Zop6etKtP2Gz7wqvCrPE-48" value="" style="endArrow=none;html=1;rounded=0;exitX=0.438;exitY=-0.04;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitPerimeter=0;" edge="1" parent="1" source="Zop6etKtP2Gz7wqvCrPE-40" target="Zop6etKtP2Gz7wqvCrPE-44">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="230" as="sourcePoint" />
+            <mxPoint x="460" y="180" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
