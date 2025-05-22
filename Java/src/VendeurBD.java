@@ -7,6 +7,8 @@ public class VendeurBD {
 		this.laConnexion=laConnexion;
 	}
 
-	
+	public String modifierLivre(){
+		
+	}
 
 }
