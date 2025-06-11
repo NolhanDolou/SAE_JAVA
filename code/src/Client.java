@@ -46,8 +46,8 @@ public class Client extends Personne {
         List<Livre> res = new ArrayList<>();
         for(Commande commande : this.commandes){
             for(Livre livre :commande.tousLesLivres()){
-                if(!())
-            res.addAll();
+                if(!(res.contains(livre)))
+            res.add(livre);
         }}
         return res;
     }
