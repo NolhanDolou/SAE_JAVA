@@ -1,5 +1,6 @@
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Client extends Personne {
     private int numeroClient;
@@ -41,9 +42,48 @@ public class Client extends Personne {
         this.ville = ville;
     }
 
+    public List<Livre> tousLesLivresClient(){
+        List<Livre> res = new ArrayList<>();
+        for(Commande commande : this.commandes){
+            for(Livre livre :commande.tousLesLivres()){
+                if(!())
+            res.addAll();
+        }}
+        return res;
+    }
     public void commanderLivre(Livre livre, int qte, Magasin magasin, Commande commande){
-        DetailCommande detailCommande = new DetailCommande(commande.getCommandeFinale().size()+1,livre, qte, commande.getNumCommande());
+        DetailCommande detailCommande = new DetailCommande(commande.getCommandeFinale().size()+1,livre, qte);
         commande.ajouterDetailCommande(detailCommande);
         magasin.getStock().remove(livre);
     }
+
+    public List<Livre>  onVousRecommande(Client client){
+        List<Livre> res= new ArrayList<>();
+        //List<Commande> toutesLesCommandes = new ArrayList<>();
+        if(toutesLesCommandes.hasNext()){
+            toutesLesCommandes.next();
+            if(!(client.commandes.contains(commande))){
+                for(Livre livre : client.tousLesLivresClient()){
+                    if(commande.tousLesLivres().contains(livre)){
+                        if(!(res.contains(livre))){
+                            res.add(livre);
+                        }
+                    }
+                }
+            }
+        }
+        return res;
+         /*list livre res 
+         *
+         *commande.hasNext 
+         * commande next ->
+         * if commande n'est pas dans les commandes du client :
+         *      for(livre in client.tousleslivresclient)
+         *          if commande.tousleslivres.contains(livre)
+         *              if ! res.contains(livre)
+         *                  res.add(livre)
+         * 
+         */
+    }
+    
 }
