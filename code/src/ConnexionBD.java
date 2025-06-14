@@ -8,7 +8,7 @@ public class ConnexionBD {
 	}
 
     public void connecter() throws SQLException {
-		this.mysql = DriverManager.getConnection("jdbc:mysql://servinfo-maria:3306/DBmoisan","moisan" ,"moisan");
+		this.mysql = DriverManager.getConnection("jdbc:mysql://localhost:3306/librairie","root" ,"moisan");
 		// si tout s'est bien passé la connexion n'est plus nulle
 		this.connecte=this.mysql !=null;
 	}
