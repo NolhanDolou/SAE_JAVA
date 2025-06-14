@@ -18,7 +18,7 @@ public class ConnexionBD {
         String port = props.getProperty("port");
         String database = props.getProperty("database");
         String user = props.getProperty("user");
-        String password = props.getProperty("password");
+        String password = props.getProperty("");
 
         String url = "jdbc:mariadb://" + host + ":" + port + "/" + database;
 
