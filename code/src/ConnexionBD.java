@@ -1,28 +1,41 @@
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+import java.io.*;
 
 public class ConnexionBD {
-    private Connection mysql=null;
-    private boolean connecte =false;
-	public ConnexionBD() throws ClassNotFoundException{
-		Class.forName("org.mariadb.jdbc.Driver");
-	}
+    public static Connection getConnexion() {
+        Properties props = new Properties();
+        try (FileReader reader = new FileReader("./INFOOBLIGATOIRE.txt")) {
+            props.load(reader);
+        } catch (IOException e) {
+            System.out.println("Erreur lors de la lecture de config.txt : " + e.getMessage());
+            return null;
+        }
 
-    public void connecter() throws SQLException {
-		this.mysql = DriverManager.getConnection("jdbc:mysql://localhost:3306/librairie","root" ,"moisan");
-		// si tout s'est bien passé la connexion n'est plus nulle
-		this.connecte=this.mysql !=null;
-	}
+        String host = props.getProperty("host");
+        String port = props.getProperty("port");
+        String database = props.getProperty("database");
+        String user = props.getProperty("user");
+        String password = props.getProperty("password");
 
-	public void close() throws SQLException {
-		// fermer la connexion
-		this.connecte=false;
-	}
-    
-	public Statement createStatement() throws SQLException {
-		return this.mysql.createStatement();
-	}
+        String url = "jdbc:mariadb://" + host + ":" + port + "/" + database;
 
-	public PreparedStatement prepareStatement(String requete) throws SQLException{
-		return this.mysql.prepareStatement(requete);
-	}
+        try {
+            return DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la connexion à la base de données : " + e.getMessage());
+            return null;
+        }
+    }
+
+    public static void main(String[] args) {
+        Connection conn = getConnexion();
+        if (conn != null) {
+            System.out.println("Connexion réussie !");
+        } else {
+            System.out.println("Échec de la connexion.");
+        }
+    }
 }
