@@ -8,6 +8,10 @@ public abstract class Personne{
 
     }
 
+    public Personne(String nom){
+        this.nom = nom;
+    }
+
     public String getNom() {
         return nom;
     }

@@ -9,6 +9,11 @@ public class Auteur extends Personne{
         this.livreEcrits=new ArrayList<>();
     }
 
+    public Auteur(String nom){
+        super(nom);
+        this.livreEcrits=new ArrayList<>();
+    }
+
     public String getNom() {
         return nom;
     }
@@ -23,6 +28,10 @@ public class Auteur extends Personne{
 
     public void ajouterLivreEcrit(Livre livre){
         this.livreEcrits.add(livre);
+    }
+
+    public String toString(){
+        return this.nom;
     }
 
 }

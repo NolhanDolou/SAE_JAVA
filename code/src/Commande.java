@@ -18,7 +18,7 @@ public class Commande{
         this.enligne=enligne;
         this.livraison=livraison;
         if (livraison == Livraison.MAGASIN){
-            this.reception = magasin.getAdresse();
+            this.reception = magasin.getVilleMag();
         } else {
             this.reception = client.getAdresse();
         }

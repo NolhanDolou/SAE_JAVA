@@ -4,7 +4,7 @@ public class Vendeur extends Personne {
 
     private Magasin magasin;
 
-    public Vendeur(String nom, String prenom,Magasin magasin){
+    public Vendeur(String nom, String prenom, Magasin magasin){
         super(nom, prenom);
         this.magasin=magasin;
     }
@@ -13,8 +13,8 @@ public class Vendeur extends Personne {
         return magasin;
     }
 
-    public void ajouterLivre(String titre, Auteur auteur, int nbDePages, double prix, List<Classification> themes, Editeur editeur){
-        Livre livre = new Livre(titre, auteur, nbDePages, prix, editeur);
+    /*public void ajouterLivre(String titre, Auteur auteur, int nbDePages, double prix, int dateParution, List<Classification> themes, Editeur editeur){
+    Livre livre = new Livre(titre, auteur, nbDePages, prix, dateParution, editeur);
         for(Classification theme : themes){
         livre.ajouterThemes(theme);}
         for(Classification theme : themes){
@@ -40,11 +40,11 @@ public class Vendeur extends Personne {
         return false;
     }
 
-    public boolean commandeClient(Livre livre, Client client, int qte,Commande commande){
+    public boolean commandeClient(Livre livre, Client client, int qte,Commande commande,int nbPlusGrandDetailCommande){
         int nbtrue =0;
         for(int i = 0; i<qte; i++){
             if(this.estDispo(livre, this.magasin)){
-                client.commanderLivre(livre, qte, this.magasin,commande );
+                client.commanderLivre(livre, qte, this.magasin,commande, nbPlusGrandDetailCommande );
             nbtrue+=1;}
             }
         if(nbtrue == qte){
@@ -55,5 +55,5 @@ public class Vendeur extends Personne {
     public void transfertLivre(Livre livre, Magasin autreMagasin){
         autreMagasin.getStock().remove(livre);
         this.majStock(livre, 1);
-    }
+    }*/
 }

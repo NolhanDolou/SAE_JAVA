@@ -51,39 +51,32 @@ public class Client extends Personne {
         }}
         return res;
     }
-    public void commanderLivre(Livre livre, int qte, Magasin magasin, Commande commande){
-        DetailCommande detailCommande = new DetailCommande(commande.getCommandeFinale().size()+1,livre, qte);
+
+    public void commanderLivre(Livre livre, int qte, Magasin magasin, Commande commande, int nbPlusGrandDetailCommande){
+        DetailCommande detailCommande = new DetailCommande(nbPlusGrandDetailCommande+1, livre, qte, commande.getNumCommande());
         commande.ajouterDetailCommande(detailCommande);
-        magasin.getStock().remove(livre);
+        //magasin.supprimerLivre(livre);
     }
 
-    public List<Livre>  onVousRecommande(Client client){
-        List<Livre> res= new ArrayList<>();
-        //List<Commande> toutesLesCommandes = new ArrayList<>();
-        if(toutesLesCommandes.hasNext()){
-            toutesLesCommandes.next();
-            if(!(client.commandes.contains(commande))){
-                for(Livre livre : client.tousLesLivresClient()){
-                    if(commande.tousLesLivres().contains(livre)){
-                        if(!(res.contains(livre))){
-                            res.add(livre);
+    public List<Livre> onVousRecommande(Client client, List<Commande> toutesLesCommandes){
+        List<Livre> recommandations= new ArrayList<>();
+        Iterator<Commande> it = toutesLesCommandes.iterator();
+        while(it.hasNext()){
+            Commande commande = it.next();
+            if(!(client.commandes.contains(commande))){//si la commande qu'on regarde n'est pas celle du client
+                for(Livre livre : client.tousLesLivresClient()){// on parcourt chaque livre que le client à commandé
+                    if(commande.tousLesLivres().contains(livre)){// si dans la commande qu'on regarde il y a le livre que le client a commandé (il faut donc lui recommander les livres de cette commande)
+                        for(Livre livreCommande : commande.tousLesLivres() ){// pour chaque livre de la commande
+                            if(!(client.tousLesLivresClient().contains(livreCommande))&& !(recommandations.contains(livreCommande))){//si le client n'a jamais commandé ce livre et qu'il n'est pas dans les recommandations
+                                recommandations.add(livreCommande);// l'ajouter aux recommandations
+                            }
                         }
                     }
                 }
             }
         }
-        return res;
-         /*list livre res 
-         *
-         *commande.hasNext 
-         * commande next ->
-         * if commande n'est pas dans les commandes du client :
-         *      for(livre in client.tousleslivresclient)
-         *          if commande.tousleslivres.contains(livre)
-         *              if ! res.contains(livre)
-         *                  res.add(livre)
-         * 
-         */
+        return recommandations;
     }
+
     
 }

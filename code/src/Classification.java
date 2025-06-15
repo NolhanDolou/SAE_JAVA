@@ -1,7 +1,8 @@
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Classification {
+    private int iddewey;
     private String theme;
     private List<Livre> livresGenre;
 
@@ -12,6 +13,10 @@ public class Classification {
 
     public String getTheme() {
         return this.theme;
+    }
+
+    public int getIddewey(){
+        return this.iddewey;
     }
 
     public List<Livre> getLivresGenre() {

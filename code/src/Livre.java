@@ -6,6 +6,7 @@ public class Livre{
     private Auteur auteur;
     private int nbDePages;
     private double prix;
+    private int dateParution;
     private Editeur editeur;
     private List<Classification> themes;
 
@@ -27,9 +28,10 @@ public class Livre{
     public Editeur getEditeur() {
         return editeur;
     }
-    public Livre(String titre, Auteur auteur, int nbDePages, double prix, Editeur editeur) {
+    public Livre(String titre, Auteur auteur,int dateParution, int nbDePages, double prix, Editeur editeur) {
         this.titre = titre;
         this.auteur = auteur;
+        this.dateParution = dateParution;
         this.nbDePages = nbDePages;
         this.prix = prix;
         this.editeur = editeur;
@@ -38,6 +40,10 @@ public class Livre{
 
     public void ajouterThemes(Classification theme){
         this.themes.add(theme);
+    }
+
+    public int getDateparution(){
+        return this.dateParution;
     }
 
 
