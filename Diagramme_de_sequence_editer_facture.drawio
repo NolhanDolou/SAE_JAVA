@@ -11,7 +11,7 @@
           <mxGeometry x="380" width="150" height="360" as="geometry" />
         </mxCell>
         <mxCell id="4" value="Magasin : magasin" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;" parent="1" vertex="1">
-          <mxGeometry x="580" width="150" height="1078" as="geometry" />
+          <mxGeometry x="580" width="150" height="1020" as="geometry" />
         </mxCell>
         <mxCell id="5" value="DetailCommande : dc" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;" parent="1" vertex="1">
           <mxGeometry x="820" width="150" height="1078" as="geometry" />
