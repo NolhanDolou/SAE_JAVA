@@ -45,6 +45,4 @@ public class Livre{
     public int getDateparution(){
         return this.dateParution;
     }
-
-
 }

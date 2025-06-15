@@ -7,7 +7,7 @@ import java.io.*;
 
 public class ConnectionBD {
     private static Connection connexion = null;
-    public static Connection getConnexion() {
+    public static Connection getConnection() {
         if (connexion != null) return connexion;
 
         Properties props = new Properties();
@@ -37,7 +37,7 @@ public class ConnectionBD {
 
     public static Statement createStatement() {
         try {
-            Connection conn = getConnexion();
+            Connection conn = getConnection();
             if (conn != null) {
                 return conn.createStatement();
             } else {

@@ -10,7 +10,8 @@ public class MagasinBD {
 
     public String getidMag(Connection laConnexion, String nomMag) {
         String res = null;
-        String req = "SELECT idmag FROM MAGASIN WHERE nommag = '" + nomMag + "';";
+        String titre = nomMag.replace("'", "''");
+        String req = "SELECT idmag FROM MAGASIN WHERE nommag = '" + titre + "';";
         try {
             Statement st = laConnexion.createStatement();
             ResultSet rs = st.executeQuery(req);
@@ -23,6 +24,50 @@ public class MagasinBD {
             e.printStackTrace();
         }
         return res;
+    }
+
+    // liste livre du mag 
+    // "select titre from livre where mag =" + magasin.nonmmag 
+
+    public List<Livre> livresParMagasin(String idMag) throws SQLException {
+        List<Livre> livres = new ArrayList<>();
+        String sql = """
+            SELECT l.isbn, l.titre, l.nbpages, l.datepubli, l.prix,
+                   a.nomauteur,
+                   e.nomedit,
+                   p.qte
+            FROM POSSEDER p
+            JOIN LIVRE l ON p.isbn = l.isbn
+            LEFT JOIN ECRIRE ec ON l.isbn = ec.isbn
+            LEFT JOIN AUTEUR a ON ec.idauteur = a.idauteur
+            LEFT JOIN EDITER ed ON l.isbn = ed.isbn
+            LEFT JOIN EDITEUR e ON ed.idedit = e.idedit
+            WHERE p.idmag = ? AND p.qte > 0
+        """;
+        // a.prenomauteur,,
+        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(sql)) {
+            pst.setString(1, idMag);
+            try (ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    String titre = rs.getString("titre");
+                    int nbPages = rs.getInt("nbpages");
+                    int datePubli = rs.getInt("datepubli");
+                    double prix = rs.getDouble("prix");
+
+                    String nomAuteur = rs.getString("nomauteur");
+                    Auteur auteur = new Auteur(nomAuteur);
+
+                    String nomEditeur = rs.getString("nomedit");
+                    Editeur editeur = new Editeur(nomEditeur);
+
+                    Livre livre = new Livre(titre, auteur, datePubli, nbPages, prix, editeur);
+                    livres.add(livre);
+                }
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Erreur lors de la récupération des livres du magasin : " + e.getMessage(), e);
+        }
+        return livres;
     }
 
     public List<Magasin> listeMagasins() throws SQLException {
@@ -49,21 +94,81 @@ public class MagasinBD {
     }
 
     public Magasin idMagToMag(String idMag) throws SQLException {
-    String sql = "SELECT nommag, villemag FROM MAGASIN WHERE idmag = ?";
-    try (PreparedStatement pst = ConnectionBD.getConnexion().prepareStatement(sql)) {
-        pst.setString(1, idMag);
-        try (ResultSet rs = pst.executeQuery()) {
+        String sql = "SELECT nommag, villemag FROM MAGASIN WHERE idmag = ?";
+        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(sql)) {
+            pst.setString(1, idMag);
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    String nom = rs.getString("nommag");
+                    String ville = rs.getString("villemag");
+                    return new Magasin(nom, ville);
+                } else {
+                    throw new SQLException("Aucun magasin trouvé avec l'ID : " + idMag);
+                }
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Erreur lors de la récupération du magasin : " + e.getMessage(), e);
+        }
+    }
+
+    public int getNombreLivresVendusParMagasin(String idMag) throws SQLException {
+        String sql = """
+            SELECT SUM(dc.qte) AS total
+            FROM COMMANDE c
+            JOIN DETAILCOMMANDE dc ON c.numcom = dc.numcom
+            WHERE c.idmag = ?
+        """;
+
+        try (PreparedStatement pst = laConnexion.prepareStatement(sql)) {
+            pst.setString(1, idMag);
+            ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                String nom = rs.getString("nommag");
-                String ville = rs.getString("villemag");
-                return new Magasin(nom, ville);
+                return rs.getInt("total");
             } else {
-                throw new SQLException("Aucun magasin trouvé avec l'ID : " + idMag);
+                return 0;
             }
         }
-    } catch (SQLException e) {
-        throw new SQLException("Erreur lors de la récupération du magasin : " + e.getMessage(), e);
     }
-}
 
+    public double getChiffreAffaireMagasin(String idMag) throws SQLException {
+        String sql = """
+            SELECT SUM(dc.qte * dc.prixvente) AS chiffre
+            FROM COMMANDE c
+            JOIN DETAILCOMMANDE dc ON c.numcom = dc.numcom
+            WHERE c.idmag = ?
+        """;
+
+        try (PreparedStatement pst = laConnexion.prepareStatement(sql)) {
+            pst.setString(1, idMag);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getDouble("chiffre");
+            } else {
+                return 0.0;
+            }
+        }
+    }
+
+    public String getLivreLePlusVendu(String idMag) throws SQLException {
+        String sql = """
+            SELECT titre, dc.isbn, SUM(dc.qte) AS total
+            FROM COMMANDE c
+            JOIN DETAILCOMMANDE dc ON c.numcom = dc.numcom 
+            JOIN livre ON dc.isbn = livre.isbn
+            WHERE c.idmag = ? 
+            GROUP BY dc.isbn
+            ORDER BY total DESC
+            LIMIT 1
+        """;
+
+        try (PreparedStatement pst = laConnexion.prepareStatement(sql)) {
+            pst.setString(1, idMag);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getString("titre");
+            } else {
+                return null;
+            }
+        }
+    }
 }

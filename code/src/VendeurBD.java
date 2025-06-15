@@ -46,30 +46,33 @@ public class VendeurBD {
 
         // AJOUTER DANS ECRIRE
         AuteurBD auteurBD = new AuteurBD(laConnexion);
-        String reqEcr = "INSERT INTO editer VALUES(" + isbnStr +","+ auteurBD.getIdAuteur((livre.getAuteur().getNom() + " "+ livre.getAuteur().getPrenom()))+")";
+        String reqEcr = "INSERT INTO ecrire VALUES(" + isbnStr +",'"+ auteurBD.getIdAuteur(livre.getAuteur().getNom())+"')";
         st.executeUpdate(reqEcr);
 
         // AJOUTER DANS EDITER
-        int idedit = 0;
-        ResultSet rsEdit = st.executeQuery("SELECT DISTINCT idedit FROM EDITER WHERE nomedit='" + livre.getEditeur() + "'");
+        ResultSet rsEdit = st.executeQuery("SELECT DISTINCT idedit FROM EDITEUR WHERE nomedit='" + livre.getEditeur().getNom()+"'");
 		if(!rsEdit.next()){
 			System.err.println("L'éditeur ne correspond à aucun éditeur de notre base de données");
 		}else{
-			while (rsEdit.next()){
-            	idedit=rsEdit.getInt("idedit");
-        	}
-			String reqEdit = "INSERT INTO editer VALUES("+isbnStr +","+ String.valueOf(idedit) +")";
-        	st.executeUpdate(reqEdit);
-        	}
+            int idedit = rsEdit.getInt("idedit");
+            if(rsEdit.wasNull()){
+                System.err.println("Le champ est null");
+            }else{
+			    String reqEdit = "INSERT INTO editer VALUES("+isbnStr +","+ String.valueOf(idedit)+")";
+        	    st.executeUpdate(reqEdit);
+            }
+        }
+        rsEdit.close();
 	}
 
-	public void modifierQuantiteLivreMagasin(int isbn, int idmag) throws SQLException{
+	public void modifierQuantiteLivreMagasin(String isbn, String idmag, int qte) throws SQLException{
 		try{
 			st=laConnexion.createStatement();
-        	String req = "INSERT INTO livre VALUES(" + String.valueOf(isbn)
-        	+ "," + String.valueOf(idmag)+")";
+        	String req = "UPDATE POSSEDER SET qte = " + String.valueOf(qte) + " WHERE isbn = '" + isbn
+        	+ "' AND idmag = '"+ idmag+"'";
+            st.executeUpdate(req);
 		}catch(SQLException e){
-			System.out.println(e.getMessage());
+			System.err.println(e.getMessage());
 		}
 	}
 
@@ -91,7 +94,22 @@ public class VendeurBD {
     } catch (SQLException e) {
         System.out.println("Erreur lors de la récupération des auteurs : " + e.getMessage());
     }
-        return null;
+        return vendeurs;
     }
-        
+
+    public boolean verifierDisponibiliteLivre(String isbn) throws SQLException {
+        String sql = "SELECT COUNT(*) AS nb FROM POSSEDER WHERE isbn = ? AND qte > 0";
+        try (PreparedStatement pst = laConnexion.prepareStatement(sql)) {
+            pst.setString(1, isbn);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                int nb = rs.getInt("nb");
+                return nb > 0; 
+            } else {
+                return false; 
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Erreur lors de la vérification de la disponibilité du livre : " + e.getMessage(), e);
+        }
+    }
 }

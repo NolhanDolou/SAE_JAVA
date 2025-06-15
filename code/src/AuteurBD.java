@@ -11,18 +11,18 @@ public class AuteurBD{
 	public String getIdAuteur(String nomprenom) throws SQLException {
         String sql = "SELECT idauteur FROM AUTEUR WHERE nomauteur = ?";
 
-        try (PreparedStatement pst = ConnectionBD.getConnexion().prepareStatement(sql)) {
+        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(sql)) {
             pst.setString(1, nomprenom);
 
             try (ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
                     return rs.getString("idauteur");
-                } else {
+                }else {
                     throw new SQLException("Auteur non trouvé pour : " + nomprenom);
                 }
             }
-        } catch (SQLException e) {
-            throw new SQLException("Erreur lors de la récupération de l'id de l'auteur : " + e.getMessage(), e);
+        }catch (SQLException e) {
+            throw new SQLException("Erreur lors de la récupération de l'id de l'auteur : " + e.getMessage());
         }
     }
 
@@ -45,9 +45,9 @@ public class AuteurBD{
         }
 
     } catch (SQLException e) {
-        throw new SQLException("Erreur lors de la récupération des auteurs : " + e.getMessage(), e);
+        throw new SQLException("Erreur lors de la récupération des auteurs : " + e.getMessage());
     }
-    System.out.println(auteurs);
     return auteurs;
-}
+    }
+
 }

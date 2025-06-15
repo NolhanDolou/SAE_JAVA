@@ -52,7 +52,7 @@ public class AdministrateurBD {
 
     public void modifierPrixLivre(String isbn, double nouveauPrix) throws SQLException {
         String sql = "UPDATE LIVRE SET prix = ? WHERE isbn = ?";
-        try (PreparedStatement ps = ConnectionBD.getConnexion().prepareStatement(sql)) {
+        try (PreparedStatement ps = ConnectionBD.getConnection().prepareStatement(sql)) {
             ps.setDouble(1, nouveauPrix);
             ps.setString(2, isbn);
             int rows = ps.executeUpdate();
@@ -66,7 +66,7 @@ public class AdministrateurBD {
 
     public void modifierQuantiteLivreMagasin(String idMag, String isbn, int nouvelleQte) throws SQLException {
         String sql = "UPDATE POSSEDER SET qte = ? WHERE idmag = ? AND isbn = ?";
-        try (PreparedStatement ps = ConnectionBD.getConnexion().prepareStatement(sql)) {
+        try (PreparedStatement ps = ConnectionBD.getConnection().prepareStatement(sql)) {
             ps.setInt(1, nouvelleQte);
             ps.setString(2, idMag);
             ps.setString(3, isbn);
@@ -81,7 +81,7 @@ public class AdministrateurBD {
 
     public void supprimerLivreDuMagasin(String idMag, String isbn) throws SQLException {
         String sql = "DELETE FROM POSSEDER WHERE idmag = ? AND isbn = ?";
-        try (PreparedStatement ps = ConnectionBD.getConnexion().prepareStatement(sql)) {
+        try (PreparedStatement ps = ConnectionBD.getConnection().prepareStatement(sql)) {
             ps.setString(1, idMag);
             ps.setString(2, isbn);
             int rows = ps.executeUpdate();
